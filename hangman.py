@@ -114,6 +114,7 @@ class Hangman (object):
 
                         if self.attempt == self.lives:
                             print("You dead.")
+                            print("The word was " + self.word) # print the word
                             break
                         else:
                             self.print_hangman()
@@ -145,7 +146,8 @@ class Hangman (object):
                 number_of_lives = self.check_lives(number_of_lives)
 
         self.lives = number_of_lives
-
+    def print_word(self):
+        print("The word was: %" % self.word)
     def choose_word(self):
         # this function chooses a word to be played
         word_container = open("words.txt", "r")
@@ -182,11 +184,14 @@ class Hangman (object):
                         break
 
 
-ccc = Hangman("wind", 9)
+ccc = Hangman('', 2)
 # ccc.get_lives()
 # ccc.choose_word()
 # ccc.display_letters()
 # ccc.guess_letter()
 ccc.run_game()
+
+# ccc.print_word()
 # ccc.check_lives(9)
 # ccc.get_lives(9)
+2
