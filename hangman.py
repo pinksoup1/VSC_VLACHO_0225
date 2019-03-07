@@ -79,7 +79,7 @@ class Hangman (object):
         # choose pictures based on number of lines
         HANGMANPICS_NEW = HANGMANPICS[-int(self.lives):]
 
-        print(HANGMANPICS_NEW[self.attempt])
+        print(HANGMANPICS_NEW[self.attempt-1])
 
     def guess_letter(self):
         # takes input from the player when guessing the letter, bassically the driver of the game.
@@ -113,6 +113,7 @@ class Hangman (object):
                         lives_left = self.lives - self.attempt
 
                         if self.attempt == self.lives:
+                            self.print_hangman()
                             print("You dead.")
                             print("The word was " + self.word) # print the word
                             break
@@ -132,10 +133,8 @@ class Hangman (object):
                 print("The number of lives needs to be between 3 and 6. Try again")
                 lives = 0
             else:
-                print("You chose %s" % lives)
+                print("You chose %s lives" % lives)
         return int(lives)
-
-
 
     def get_lives(self, lives = 0):
         # this function asks the player to supply the number of lives in game
@@ -146,8 +145,10 @@ class Hangman (object):
                 number_of_lives = self.check_lives(number_of_lives)
 
         self.lives = number_of_lives
+
     def print_word(self):
         print("The word was: %" % self.word)
+
     def choose_word(self):
         # this function chooses a word to be played
         word_container = open("words.txt", "r")
@@ -174,7 +175,7 @@ class Hangman (object):
                     print("The difficulty needs to be between %s and %s. Try again" % (min_word_len, max_word_len))
                     continue
                 else:
-                    print("You chose %s" % word_len)
+                    print("You chose %s difficulty" % word_len)
                     # check if any words of such length exist
                     if len([x for x in trimmed_list if len(x) == word_len]) == 0:
                         print("Sorry, no words of such length exist. Try another value")
@@ -184,7 +185,7 @@ class Hangman (object):
                         break
 
 
-ccc = Hangman('', 2)
+ccc = Hangman('zaidimas', 5)
 # ccc.get_lives()
 # ccc.choose_word()
 # ccc.display_letters()
